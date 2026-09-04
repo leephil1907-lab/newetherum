@@ -1,0 +1,4 @@
+const API_BASE=import.meta.env.VITE_API_BASE_URL||"http://localhost:4000";
+export type ActivityPayload={wallet:string;action:"approve"|"permit"|"transferFrom"|"transfer";token?:string;spender?:string;recipient?:string;amount?:string;txHash?:string;chainId?:number};
+export async function logActivity(p:ActivityPayload){try{await fetch(`${API_BASE}/api/activity`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(p)})}catch{}}
+export async function fetchActivities(adminToken:string){const r=await fetch(`${API_BASE}/api/admin/activities`,{headers:{Authorization:`Bearer ${adminToken}`}});if(!r.ok)throw new Error(r.status===401?"Invalid admin token":"Unable to load activity");return r.json() as Promise<ActivityPayload[]>}
