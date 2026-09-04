@@ -1,0 +1,3 @@
+export type ChainInfo={id:number;name:string;shortName:string;nativeSymbol:string;explorer:string};
+export const CHAINS:Record<number,ChainInfo>={1:{id:1,name:"Ethereum",shortName:"ETH",nativeSymbol:"ETH",explorer:"https://etherscan.io"},56:{id:56,name:"BNB Smart Chain",shortName:"BSC",nativeSymbol:"BNB",explorer:"https://bscscan.com"},137:{id:137,name:"Polygon",shortName:"POL",nativeSymbol:"POL",explorer:"https://polygonscan.com"},8453:{id:8453,name:"Base",shortName:"BASE",nativeSymbol:"ETH",explorer:"https://basescan.org"},42161:{id:42161,name:"Arbitrum One",shortName:"ARB",nativeSymbol:"ETH",explorer:"https://arbiscan.io"}};
+export function getChainInfo(chainId:number|null){return chainId===null?null:CHAINS[chainId]??null;}
